@@ -1,6 +1,6 @@
 package org.granbazar.ecommercegranbazar.controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.granbazar.ecommercegranbazar.model.Categoria;
 import org.granbazar.ecommercegranbazar.service.CategoriaService;
@@ -25,7 +25,7 @@ public class CategoriaController {
 	}//constructor para inicializar categoria
 	
 	@GetMapping
-	public ArrayList<Categoria> getAllCategorias(){
+	public List<Categoria> getAllCategorias(){
 		return categoriaService.getAllCategorias();
 	}//getAllCategorias
 	

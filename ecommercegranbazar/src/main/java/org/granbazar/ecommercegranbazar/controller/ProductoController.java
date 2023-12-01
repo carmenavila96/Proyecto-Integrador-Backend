@@ -1,6 +1,6 @@
 package org.granbazar.ecommercegranbazar.controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.granbazar.ecommercegranbazar.model.Producto;
 import org.granbazar.ecommercegranbazar.service.ProductoService;
@@ -25,7 +25,7 @@ public class ProductoController {
 	}//constructor para inicializar Producto
 	
 	@GetMapping
-	public ArrayList<Producto> getAllProductos(){
+	public List<Producto> getAllProductos(){
 		return productoService.getAllProductos();
 	}//getAllProductos
 	

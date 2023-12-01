@@ -1,68 +1,71 @@
 package org.granbazar.ecommercegranbazar.service;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import org.granbazar.ecommercegranbazar.model.Comprador;
+import org.granbazar.ecommercegranbazar.repository.CompradorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 @Service
 public class CompradorService {
-	public final ArrayList<Comprador> lista = new ArrayList<Comprador>();
+	
+	private final CompradorRepository compradorRepository;
 	
 	@Autowired
-	public CompradorService() {
-		lista.add(new Comprador("Emilty", "emilty@gmail.com", "3142232789", "Cheeto21"));
-		lista.add(new Comprador("Majo", "majo@hotmail.com", "5589651584", "Trakalosas123"));
-		lista.add(new Comprador("Natividad", "natFu@gmail.com", "4431547895", "churro58"));
-		lista.add(new Comprador("Lau", "lau@hotmail.com", "8452658963", "veggies23"));
-		lista.add(new Comprador("Den", "deni@gmail.com", "1524569845", "chetito56"));
-	}//constructor
+	public CompradorService(CompradorRepository compradorRepository) {
+		  this.compradorRepository = compradorRepository;
+		 } //constructor
 
-	public ArrayList<Comprador> getAllCompradores() {
-		return lista;
-	}//getAllCompradores
+	public List<Comprador> getAllCompradores() {
+		  return compradorRepository.findAll();
+		 }//getAllComprador
 
 	public Comprador getComprador(long id) {
-		Comprador comp = null;
-		for (Comprador comprador : lista) {
-			if(id == comprador.getId()) {
-				comp = comprador;
-				break;
-			}//if
-		}//forEach
-		return comp;
-	}//getComprador
+		  return compradorRepository.findById(id).orElseThrow(
+		         ()-> new IllegalArgumentException("El comprador con el id [" + id 
+		           + "] no existe")
+		  );
+		 } //getComprador
 
 	public Comprador deleteComprador(long id) {
-		Comprador comp = null;
-		for (Comprador comprador : lista) {
-			if(id == comprador.getId()) {
-				comp = comprador;
-				lista.remove(comprador);
-				break;
-			}//if
-		}//forEach
-		return comp;
-	}//deleteVendedor
+		  Comprador comp = null;
+		  if (compradorRepository.existsById(id)) {
+		   comp = compradorRepository.findById(id).get();
+		   compradorRepository.deleteById(id);
+		  }//if existById
+		 return comp;
+		 }//deleteComprador
 
 	public Comprador addComprador(Comprador comprador) {
-		  lista.add(comprador);
-		  return comprador;
-	}//addComprador
+		  //TODO: validación
+		  Optional<Comprador> tmpProd= compradorRepository.findByNombre (comprador.getNombre());
+		  if (tmpProd.isEmpty()) { //No se encuentra comprador con ese nombre
+		   return compradorRepository.save(comprador);
+		  } else {
+		   System.out.println("Ya existe el comprador con el nombre ["
+		     + comprador.getNombre()+ "]");
+		  return null;
+		 } //else
+		}//addComprador
 
+	
 	public Comprador updateComprador(long id, String nombre, String correo, String telefono,
 			String contrasena) {
 		Comprador comp = null;
-		for (Comprador comprador : lista) {
-			if(id == comprador.getId()) {
-				if (nombre!= null) comprador.setNombre (nombre);
-				if (correo!= null) comprador.setCorreo (correo);
-				if (telefono!= null) comprador.setTelefono (telefono);
-				if (contrasena!= null) comprador.setContrasena (contrasena);
-				comp = comprador;
-			    break;
-			}//if
-		}//forEach
+		if(compradorRepository.existsById(id)) {
+			 comp = compradorRepository.findById(id).get();
+			 
+			   if (nombre!= null) comp.setNombre (nombre);
+			   if (correo!= null) comp.setCorreo(correo);
+			   if (telefono!= null) comp.setTelefono(telefono);
+			   if (contrasena!= null) comp.setContrasena (contrasena);
+			
+			compradorRepository.save(comp);
+		}//existById
 		return comp;
-	}//updateComprador
+	}//updateProducto
+	
+	
 }//class

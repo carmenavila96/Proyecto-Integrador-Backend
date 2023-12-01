@@ -1,14 +1,28 @@
 package org.granbazar.ecommercegranbazar.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "compradores")
 public class Comprador {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
 	private Long id;
+	@Column(nullable = false)
 	private String nombre;
+	@Column(nullable = false)
 	private String correo;
+	@Column(nullable = false)
 	private String telefono;
+	@Column(nullable = false)
 	private String contrasena;
 	
-	
-	private static long total = 0;
 
 
 	public Comprador(String nombre, String correo, String telefono, String contrasena) {
@@ -16,13 +30,10 @@ public class Comprador {
 		this.correo = correo;
 		this.telefono = telefono;
 		this.contrasena = contrasena;
-		Comprador.total++;
-		this.id = total;
 	}//constructor
 	
 	public Comprador() {
-		Comprador.total++;
-		this.id= total;
+	
 	}//constructor vacío
 
 

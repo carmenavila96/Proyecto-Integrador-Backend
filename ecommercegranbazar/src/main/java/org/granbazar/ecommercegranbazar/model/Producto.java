@@ -1,16 +1,35 @@
 package org.granbazar.ecommercegranbazar.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+//POJO Plain Old Java Project
+	@Entity
+	@Table(name="productos")
 public class Producto {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
 	private Long id;
+	@Column(nullable = false)
 	private String nombre;
+	@Column(nullable = false)
 	private String estadoProducto;
+	@Column(nullable = false)
 	private String descripcion;
+	@Column(nullable = false)
 	private Double precio;
+	@Column(nullable = false)
 	private String imagen;
+	@Column(nullable = false)
 	private String envio;
 	
-	private static long total = 0;
-
+  
 	public Producto(String nombre, String estadoProducto, String descripcion, Double precio, String imagen,
 			String envio) {
 		this.nombre = nombre;
@@ -19,13 +38,10 @@ public class Producto {
 		this.precio = precio;
 		this.imagen = imagen;
 		this.envio = envio;
-		Producto.total++;
-		this.id= total;
 	}//constructor
 	
 	public Producto() {
-		Producto.total++;
-		this.id= total;
+
 	}//constructorVacío
 
 	public String getNombre() {

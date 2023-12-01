@@ -1,70 +1,69 @@
 package org.granbazar.ecommercegranbazar.service;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import org.granbazar.ecommercegranbazar.model.Vendedor;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.granbazar.ecommercegranbazar.repository.VendedorRepository;
 import org.springframework.stereotype.Service;
 @Service
 public class VendedorService {
-	public final ArrayList<Vendedor> lista = new ArrayList<Vendedor>();
 	
-	@Autowired
-	public VendedorService() {
-		lista.add(new Vendedor("Jaqui", "jacjac@hotmail.com", 54236, "Av Morelos 53", "5514856985", "piopio59"));
-		lista.add(new Vendedor("Esteph", "esteph@hotmail.com", 48526, "Blv Arriaga 48", "6512548952", "gatito01"));
-		lista.add(new Vendedor("Carmen", "carmenav@gmail.com", 58412, "Av Camelinas", "4431547852", "Guts22"));
-		lista.add(new Vendedor("Caro", "caro@hotmail.com", 48523, "Av Madero 22", "4584125632","perrito8"));
-		lista.add(new Vendedor("Ruth", "ruth@hotmail.com", 89521, "Av Jesús", "4512458963","patito23"));
+	private final VendedorRepository vendedorRepository;
+	
+	
+	public VendedorService(VendedorRepository vendedorRepository) {
+		this.vendedorRepository = vendedorRepository;
 	}//constructor
 
-	public ArrayList<Vendedor> getAllVendedores() {
-		return lista;
+	public List<Vendedor> getAllVendedores() {
+		return vendedorRepository.findAll();
 	}//getAllVendedores
 
 	public Vendedor getVendedor(long id) {
-		Vendedor vend = null;
-		for (Vendedor vendedor : lista) {
-			if(id == vendedor.getId()) {
-				vend = vendedor;
-				break;
-			}//if
-		}//forEach
-		return vend;
-	}//getVendedor
+		return vendedorRepository.findById(id).orElseThrow(
+				()-> new IllegalArgumentException("El Vendedor con el id [" + id
+						+ "] no existe")
+				);
+	}//getProducto
 
 	public Vendedor deleteVendedor(long id) {
-		Vendedor vend = null;
-		for (Vendedor vendedor : lista) {
-			if(id == vendedor.getId()) {
-				vend = vendedor;
-				lista.remove(vendedor);
-				break;
-			}//if
-		}//forEach
+		Vendedor vend=null;
+		if(vendedorRepository.existsById(id)) {
+			vend = vendedorRepository.findById(id).get();
+			vendedorRepository.deleteById(id);
+		}//if existById
 		return vend;
 	}//deleteVendedor
 
 	public Vendedor addVendedor(Vendedor vendedor) {
-		 lista.add(vendedor);
-		 return vendedor;
+		  //TODO: validación
+		  Optional<Vendedor> tmpVend= vendedorRepository.findByNombre (vendedor.getNombre());
+		  if (tmpVend.isEmpty()) { //No se encuentra vendedor con ese nombre
+		   return vendedorRepository.save(vendedor);
+		  } else {
+		   System.out.println("Ya existe el vendedor con el nombre ["
+		     + vendedor.getNombre()+ "]");
+		  return null;
+		 } //else 
+
 	}//addVendedor
 
 	public Vendedor updateVendedor(long id, String nombre, String correo, Integer codigoPostal, String direccion, String telefono,
 			String contrasena) {
 		Vendedor vend = null;
-		for (Vendedor vendedor : lista) {
-			if(id == vendedor.getId()) {
-				if (nombre!= null) vendedor.setNombre (nombre);
-				if (correo!= null) vendedor.setCorreo (correo);
-				if (codigoPostal!= null) vendedor.setCodigoPostal (codigoPostal);
-				if (direccion!= null) vendedor.setDireccion (direccion);
-				if (telefono!= null) vendedor.setTelefono (telefono);
-				if (contrasena!= null) vendedor.setContrasena (contrasena);
-				vend = vendedor;
-			    break;
+		
+			if(vendedorRepository.existsById(id)) {
+				vend = vendedorRepository.findById(id).get();
+				if (nombre!= null) vend.setNombre (nombre);
+				if (correo!= null) vend.setCorreo (correo);
+				if (codigoPostal!= null) vend.setCodigoPostal (codigoPostal);
+				if (direccion!= null) vend.setDireccion (direccion);
+				if (telefono!= null) vend.setTelefono (telefono);
+				if (contrasena!= null) vend.setContrasena (contrasena);
+				vendedorRepository.save(vend);   
 			}//if
-		}//forEach
 		return vend;
 	}//updateVendedor
+	
 }//class

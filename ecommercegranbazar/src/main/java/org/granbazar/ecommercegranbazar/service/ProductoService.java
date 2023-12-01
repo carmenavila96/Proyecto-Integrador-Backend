@@ -1,70 +1,76 @@
 package org.granbazar.ecommercegranbazar.service;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import org.granbazar.ecommercegranbazar.model.Producto;
+import org.granbazar.ecommercegranbazar.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 @Service
 public class ProductoService {
-	public final ArrayList<Producto> lista = new ArrayList<Producto>();
+	
+	private final ProductoRepository productoRepository; 
 	
 	@Autowired
-	public ProductoService() {
-		lista.add(new Producto("Blazer", "Segunda mano", "Blazer azul", 299.20, "blazer.jpg", "Estafeta"));
-		lista.add(new Producto("Tostadora", "Segunda mano", "Tostadora rosa", 150.50, "tostadora.jpg", "Correos de México"));
-		lista.add(new Producto("Cien Años de Soledad", "Nuevo con etiqueta", "Libro Cien Años de Soledad", 200.25, "libro.jpg", "Fedex"));
-		lista.add(new Producto("Pantalón de Mezclilla", "Nuevo sin etiqueta", "Pantalón de mezclilla verde", 150.45, "pantalon.jpg", "Estafeta"));
-		lista.add(new Producto("Televisión 75 pulgadas", "Seminuevo", "Pantalla de 75 pulgadas", 599.23, "television.jpg", "Fedex"));
+	public ProductoService(ProductoRepository productoRepository) {
+		this.productoRepository = productoRepository;
 	}//constructor
-
-	public ArrayList<Producto> getAllProductos() {
-		return lista;
+	
+	
+	public List<Producto> getAllProductos() {
+		return productoRepository.findAll();
 	}//getAllProductos
 
 	public Producto getProducto(long id) {
-		Producto prod = null;
-		for (Producto producto : lista) {
-			if(id == producto.getId()) {
-				prod = producto;
-				break;
-			}//if
-		}//forEach
-		return prod;
+		
+		return productoRepository.findById(id).orElseThrow(
+				()-> new IllegalArgumentException("El producto con el id [" + id
+						+ "] no existe")
+				);
+		
 	}//getProducto
 
 	public Producto deleteProducto(long id) {
-		Producto prod = null;
-		for (Producto producto : lista) {
-			if(id == producto.getId()) {
-				prod = producto;
-				lista.remove(producto);
-				break;
-			}//if
-		}//forEach
+		Producto prod=null;
+		
+		if(productoRepository.existsById(id)){//asegurarme de que existe el producto
+			prod = productoRepository.findById(id).get();
+			productoRepository.deleteById(id);
+		}//if existById
+		
 		return prod;
 	}//deleteProducto
 
 	public Producto addProducto(Producto producto) {
-		  lista.add(producto);
-		  return producto;
+		// TODO: validación
+		Optional<Producto> tmpProd = productoRepository.findByNombre(producto.getNombre());
+		if (tmpProd.isEmpty()) { //no se encuentra el producto con ese nombre
+			return productoRepository.save(producto);
+		} else {
+			System.out.println("Ya existe el producto con el nombre ["
+					+ producto.getNombre() + "]"); 
+			return null;
+		}//else
 	}//addProducto
 
-	public Producto updateProducto(long id, String nombre, String estadoProducto, String descripcion, Double precio, String imagen,
-			String envio) {
+	public Producto updateProducto(long id, String nombre, String estadoProducto, String descripcion, Double precio, String imagen, String envio) {
 		Producto prod = null;
-		for (Producto producto : lista) {
-			if(id == producto.getId()) {
-				if (nombre!= null) producto.setNombre (nombre);
-				if (estadoProducto!= null) producto.setEstadoProducto (estadoProducto);
-				if (descripcion!= null) producto.setDescripcion (descripcion);
-				if (precio!= null) producto.setPrecio (precio);
-				if (imagen!= null) producto.setImagen (imagen);
-				if (envio!= null) producto.setEnvio(envio);
-				prod = producto;
-			    break;
-			}//if
-		}//forEach
+		if(productoRepository.existsById(id)) {
+			 prod = productoRepository.findById(id).get();
+			if(nombre!=null) prod.setNombre(nombre);
+			if(estadoProducto!=null) prod.setEstadoProducto(estadoProducto);
+			if(descripcion!=null) prod.setDescripcion(descripcion);
+			if(precio!=null) prod.setPrecio(precio);
+			if(imagen!=null) prod.setImagen(imagen);
+			if(envio!=null) prod.setEnvio(envio);
+			
+			productoRepository.save(prod);
+		}//existById
 		return prod;
 	}//updateProducto
+	
+	
+	
+	
 }//class

@@ -1,25 +1,34 @@
 package org.granbazar.ecommercegranbazar.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "ventas")
 public class Venta {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
 	private Long id;
+	@Column(nullable = false)
 	private String fechaVenta;
+	@Column(nullable = false)
 	private String metodoPago;
+	@Column(nullable = false)
 	private Double totalVenta;
 	
-	private static long total = 0;
-
 	public Venta(String fechaVenta, String metodoPago, Double totalVenta) {
-		super();
 		this.fechaVenta = fechaVenta;
 		this.metodoPago = metodoPago;
 		this.totalVenta = totalVenta;
-		Venta.total++;
-		this.id = total;
 	}//constructor
 
 	public Venta() {
-		Venta.total++;
-		this.id = total;
+	
 	}//constructorVacio
 
 	public String getFechaVenta() {

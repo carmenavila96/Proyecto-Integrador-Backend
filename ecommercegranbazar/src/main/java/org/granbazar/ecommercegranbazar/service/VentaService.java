@@ -1,68 +1,62 @@
 package org.granbazar.ecommercegranbazar.service;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import org.granbazar.ecommercegranbazar.model.Venta;
+import org.granbazar.ecommercegranbazar.repository.VentaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class VentaService {
 	
-	public final ArrayList<Venta> lista = new ArrayList<Venta>();
-		
+	private final VentaRepository ventaRepository;
+	
 	@Autowired
-	public VentaService() {
-		lista.add(new Venta("23-11-29", "Tarjeta débito", 299.23));
-		lista.add(new Venta("23-11-28", "Tarjeta crédito", 150.50));
-		lista.add(new Venta("23-11-27", "Tarjeta débito", 200.45));
-		lista.add(new Venta("23-11-27", "Tarjeta crédito", 150.89));
-		lista.add(new Venta("23-11-26", "Tarjeta débito", 599.05));
+	public VentaService(VentaRepository ventaRepository) {
+		this.ventaRepository = ventaRepository;
 	}//constructor
 	
-	public ArrayList<Venta> getAllVentas() {
-		return lista;
+
+	public List<Venta> getAllVentas() {
+		return ventaRepository.findAll();
 	}//getAllVentas
 	
 	public Venta getVenta(long id) {
-		Venta vent = null;
-		for (Venta venta : lista) {
-			if(id == venta.getId()) {
-			vent = venta;
-			break;
-			}//if
-		}//foreach
-		return vent;
-	} //getVenta
+		return ventaRepository.findById(id).orElseThrow(
+				()-> new IllegalArgumentException("La venta con el id [" + id
+						+ "] no existe")
+				);
+	}//getVenta
 	
 	public Venta deleteVenta(long id) {
-		Venta vent = null;
-		for (Venta venta : lista) {
-			if (id == venta.getId()) {
-				vent = venta;
-		        lista.remove(venta);
-		        break;
-			} //if
-		}//foreach
+		Venta vent=null;
+		if(ventaRepository.existsById(id)) {
+			vent = ventaRepository.findById(id).get();
+			ventaRepository.deleteById(id);
+		}//if existById
 		return vent;
 	}//deleteVenta
 	
 	public Venta addVenta(Venta venta) {
-		lista.add(venta);
-		return venta;
+	
+		   return ventaRepository.save(venta);
+
 	}//addVenta
 	
 	public Venta updateVenta(long id, String fechaVenta, String metodoPago, Double totalVenta) {
 		Venta vent = null;
-		for (Venta venta : lista) {
-			if(id == venta.getId()) {
-				if (fechaVenta!= null) venta.setFechaVenta (fechaVenta);
-				if (metodoPago!= null) venta.setMetodoPago (metodoPago);
-				if (totalVenta!= null) venta.setTotalVenta (totalVenta);
-				vent = venta;
-			    break;
+		
+			if(ventaRepository.existsById(id)) {
+				vent = ventaRepository.findById(id).get();
+				if (fechaVenta!= null) vent.setFechaVenta (fechaVenta);
+				if (metodoPago!= null) vent.setMetodoPago (metodoPago);
+				if (totalVenta!= null) vent.setTotalVenta (totalVenta);
+				ventaRepository.save(vent);
 			}//if
-		}//forEach
+		
 		return vent;
 	}//updateVenta
+	
 }//class

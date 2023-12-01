@@ -1,66 +1,66 @@
 package org.granbazar.ecommercegranbazar.service;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import org.granbazar.ecommercegranbazar.model.Categoria;
+import org.granbazar.ecommercegranbazar.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 @Service
 public class CategoriaService {
 	
-	public final ArrayList<Categoria> lista = new ArrayList<Categoria>();
+	private final CategoriaRepository categoriaRepository;
 	
 	@Autowired
-	public CategoriaService() {
-		lista.add(new Categoria("Ropa y Accesorios"));
-		lista.add(new Categoria("Entretenimiento"));
-		lista.add(new Categoria("Electrodomésticos"));
-		lista.add(new Categoria("Electrónicos"));
-		lista.add(new Categoria("Recién Añadidos"));
+	public CategoriaService(CategoriaRepository categoriaRepository) {
+		this.categoriaRepository = categoriaRepository;
 	}//constructor
 
-	public ArrayList<Categoria> getAllCategorias() {
-		return lista;
+	public List<Categoria> getAllCategorias() {
+		return categoriaRepository.findAll();
 	}//getAllCategorias
 
+	
 	public Categoria getCategoria(long id) {
-		Categoria cat = null;
-		for (Categoria categoria : lista) {
-			if(id == categoria.getId()) {
-				cat = categoria;
-				break;
-			}//if
-		}//forEach
-		return cat;
+		return categoriaRepository.findById(id).orElseThrow(
+				()-> new IllegalArgumentException("La categoria con el id [" + id
+						+ "] no existe")
+				);
 	}//getCategoria
+	
 
 	public Categoria deleteCategoria(long id) {
 		Categoria cat = null;
-		for (Categoria categoria : lista) {
-			if(id == categoria.getId()) {
-				cat = categoria;
-				lista.remove(categoria);
-				break;
-			}//if
-		}//forEach
-		return cat;
+		
+		if(categoriaRepository.existsById(id)){//asegurarme de que existe la categoría
+			cat = categoriaRepository.findById(id).get();
+			categoriaRepository.deleteById(id);
+		}//if
+		 return cat;
 	}//deleteCategoria
-
+	
 	public Categoria addCategoria(Categoria categoria) {
-		 lista.add(categoria);
-		 return categoria;
+		// TODO: validación
+		Optional<Categoria> tmpCat = categoriaRepository.findByNombre(categoria.getNombre());
+		if (tmpCat.isEmpty()) { //no se encuentra el producto con ese nombre
+			return categoriaRepository.save(categoria);
+		} else {
+			System.out.println("Ya existe la categoria con el nombre ["
+					+ categoria.getNombre() + "]"); 
+			return null;
+		}//else
 	}//addCategoria
 
 	public Categoria updateCategoria(long id, String nombre) {
 		Categoria cat = null;
-		for (Categoria categoria : lista) {
-			if(id == categoria.getId()) {
-				if (nombre!= null) categoria.setNombre (nombre);
-				cat= categoria;
-			    break;
-			}//if
-		}//forEach
+		if(categoriaRepository.existsById(id)) {
+			 cat = categoriaRepository.findById(id).get();
+			if(nombre!=null) cat.setNombre(nombre);
+			
+			categoriaRepository.save(cat);
+		}//existById
 		return cat;
-	}//updateCategoria
+	}//updatePCategoria
 
 }//class

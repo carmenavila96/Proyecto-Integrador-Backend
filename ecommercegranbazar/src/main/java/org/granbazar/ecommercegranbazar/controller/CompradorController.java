@@ -1,6 +1,6 @@
 package org.granbazar.ecommercegranbazar.controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.granbazar.ecommercegranbazar.model.Comprador;
 import org.granbazar.ecommercegranbazar.service.CompradorService;
@@ -25,7 +25,7 @@ public class CompradorController {
 	}//constructor para inicializar Comprador
 	
 	@GetMapping
-	public ArrayList<Comprador> getAllCompradores(){
+	public List<Comprador> getAllCompradores(){
 		return compradorService.getAllCompradores();
 	}//getAllComprador
 	

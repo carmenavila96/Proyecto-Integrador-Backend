@@ -1,22 +1,31 @@
 package org.granbazar.ecommercegranbazar.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="categorias")
 public class Categoria {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id", unique = true, nullable = false)
 	private Long id;
+	@Column(nullable = false)
 	private String nombre;
 	
-	
-	private static long total = 0;
 
 
 	public Categoria(String nombre) {
 		this.nombre = nombre;
-		Categoria.total++;
-		this.id = total;
+
 	}//constructor
 	
 	public Categoria() {
-		Categoria.total++;
-		this.id = total;
+	
 	}//constructorVacío
 
 	public String getNombre() {

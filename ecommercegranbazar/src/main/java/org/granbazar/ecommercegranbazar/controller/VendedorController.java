@@ -1,6 +1,6 @@
 package org.granbazar.ecommercegranbazar.controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.granbazar.ecommercegranbazar.model.Vendedor;
 import org.granbazar.ecommercegranbazar.service.VendedorService;
@@ -25,7 +25,7 @@ public class VendedorController {
 	}//constructor para inicializar Vendedor
 	
 	@GetMapping
-	public ArrayList<Vendedor> getAllVendedores(){
+	public List<Vendedor> getAllVendedores(){
 		return vendedorService.getAllVendedores();
 	}//getAllVendedores
 	

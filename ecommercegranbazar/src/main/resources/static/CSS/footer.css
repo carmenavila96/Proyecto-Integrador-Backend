@@ -1,0 +1,25 @@
+
+/*Necesario para que toda la estructura del footer funcione*/
+#footer-bazar{
+    background-color: #8A2F2E;
+    height: 11rem;
+    clear:both;
+}
+
+.icon-footer{/*color y espacio de icons*/
+    color: #F7BB75;
+    font-size: 2.5rem;
+    margin: 1rem;
+}
+
+#granBazar{/*color de @2023ElGranBazar*/
+    color: #F7BB75;
+    font-size: 1rem;
+}
+
+.words-footer{ /*color y espacio de FAQ*/
+    color: #F7BB75;
+    font-size: 1.8rem;
+    text-decoration: none;
+}
+

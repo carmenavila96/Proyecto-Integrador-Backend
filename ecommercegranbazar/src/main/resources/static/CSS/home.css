@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Young+Serif&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style-type: none;
+    text-decoration: none;
+}
+/*font-family: 'Young Serif', serif;*/
+
+body{
+  overflow-x: hidden;
+}
+
+html{
+  font-size: 16px;};
+
+/* #img-funciona{
+  min-height: 200px; 
+  min-width: 220px
+  
+} */
+
+.titulocarusel{
+  font-size: large;
+}
+
+.categoriasCarrusel{
+  font-family:'Montserrat', sans-serif;
+  text-decoration: none;
+  font-size: 2rem;
+  color: white;
+}
+

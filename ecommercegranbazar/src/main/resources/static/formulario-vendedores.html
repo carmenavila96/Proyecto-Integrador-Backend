@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Vendedores</title>
+     <!--Favicon-->
+     <link rel="icon" type="image/x-icon" href="./src/images/LogoSinFondo2.png">
+    <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <!--Bootstrap icons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <!--CSS-->
+    <link rel="stylesheet" href="./CSS/navbar.css">
+    <link rel="stylesheet" href="./CSS/formulario-vendedores.css">
+    <link rel="stylesheet" href="./CSS/footer.css"> 
+
+  </head>
+
+  <body  class="container-fluid">
+
+    <nav id="navbar" class="navbar navbar-expand-md">
+    </nav>
+
+<main>
+
+    <div id="bannerimg"  class="img-fluid">
+      <p id="banner-p"><strong>Vendedores</strong></p>
+  </div>
+
+<!--Alerts-->
+<div class="alert alert-danger fade show" style="display:none;" role="alert" id="alertValidaciones">
+  <p id="alertValidacionesTexto"></p>
+</div>
+<section class="container-fluid1 p-4">
+  <div class="alert alert-success fade show" style="display:none;" role="alert" id="alertValidaciones1">
+  <p id="Validaciones-envio"></p>
+</div>
+  
+<div class=" container-fluid row g-5">
+
+  <div id="for-izq" class="col my-5">
+      <img id="img-p-input" src="./src/images/flat-lay-objetos-vintage-naturaleza-muerta.jpg" class="img-fluid mt-5 " alt="...">
+      <div class="input-group mt-3 ">
+      <img id="img-product"> <!-- esta se comento para uque la imagen aparesca contenida en el recuadro de la de arriba -->
+        <!--Boton para Cargar imagen-->
+        <button id="upload_widget" class="btn btn-enviar-der mr-2 col-sm-2 col-md-3" class="cloudinary-button justify-content-center" required>Carga tu imagen</button>
+      </div><!-- agrega un archivo-->
+      <p class="mr-5 aviso-texto text-center">Si tienes dudas <a href="./contacto.html" class="contactanosLink"> contáctanos </a></p>
+
+        <div class="my-3 mr-5">
+          <div class="container">
+          </div><!--div de botones-->
+      </div><!--div de pregunta -->
+      <div class="my-3 mr-5"><!--abre los acordeones-->
+          <div class="accordion accordion-flush" id="accordionFlushExample">
+              <div class="accordion-item my-4">
+                <h2 class="accordion-header" >
+                  <button class="accordion-button collapsed acordion-cerrado" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                    Términos y condiciones
+                  </button>
+                </h2>
+                <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                  <div class="accordion-body">
+El Gran Bazar es una plataforma web dedicada a simplificar el proceso de compra y venta de artículos usados de excelente calidad. Nuestro objetivo es brindar a nuestros usuarios una experiencia de transacción segura y cómoda. Para el uso de nuestros servicios y la adquisición de los productos que se ofrecen en este sitio, es necesario que lea y acepte los Términos y Condiciones que a continuación se redactan. </br>
+Nos reservamos el derecho de actualizar, modificar o cambiar estas políticas, términos y condiciones en cualquier momento y sin previo aviso. Es responsabilidad del usuario revisar periódicamente estos términos y condiciones para estar al tanto de cualquier cambio.</br>
+Para adquirir un producto, será necesario el registro por parte del usuario, con ingreso de datos personales fidedignos, un correo electrónico y la definición de una contraseña.</br>
+Todos los precios que aparecen en nuestra tienda virtual están en moneda nacional (pesos mexicanos) e incluyen el impuesto al valor agregado (IVA). Por cada venta generada, el monto de comisión que El Gran Bazar toma es del 10% del costo total neto.</br>
+El pago se realizará en el momento de la compra y, una vez realizado, se enviará un correo electrónico de confirmación al usuario. Aceptamos pagos con cualquier tarjeta de débito y crédito.</br>
+Los productos se enviarán a la dirección proporcionada por el usuario en el momento de la compra. El costo de envío será cubierto y dependerá del servicio de paquetería elegido por el comprador. El Gran Bazar no se hace responsable de los retrasos causados por el proveedor de servicios de envío.</br>
+El usuario es responsable de proporcionar una dirección de entrega precisa y completa. Si el paquete es devuelto a nuestra tienda debido a una dirección incorrecta o incompleta, el usuario será responsable de los costos de reenvío. Si el paquete se pierde durante el envío, haremos todo lo posible para resolver el problema. Si no podemos localizar el paquete, proporcionaremos un reembolso completo al usuario.</br>
+Si el usuario no está satisfecho con su compra, puede comunicarse con nosotros a través del formulario de contacto y devolver el producto en un plazo de 1 a 5 días a partir de la fecha de entrega. El producto debe estar en las mismas condiciones en que fue recibido, sin usar y en su embalaje original. No se aceptarán devoluciones de productos dañados o usados. El usuario es responsable de los costos de envío de la devolución. Una vez que hayamos recibido el producto, proporcionaremos un reembolso completo en un plazo de 3 a 7 días.</br>
+Todo el contenido de nuestra tienda virtual, incluyendo imágenes, textos y diseños, son propiedad de El Gran Bazar y están protegidos por las leyes de propiedad intelectual. Estas políticas, términos y condiciones se regirán e interpretarán de acuerdo con las leyes de México, sin dar efecto a ninguna disposición sobre conflicto de leyes.</br>
+Estas políticas, términos y condiciones constituyen el acuerdo completo entre el usuario y El Gran Bazar con respecto al uso de nuestra tienda virtual y reemplazan cualquier acuerdo previo. Si necesita comunicarse con nosotros, puede hacerlo a través de nuestro formulario de contacto, nuestro tiempo de respuesta es de 24 a 48 horas.</br>
+</br>
+Fecha de última actualización: 25 de noviembre de 2023.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item my-4">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed acordion-cerrado" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                    Términos de selección de productos
+                  </button>
+                </h2>
+                <div id="flush-collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                  <div class="accordion-body">
+Calidad de los productos</br>
+En el Gran Bazar nos comprometemos a ofrecer productos en excelente estado a nuestros usuarios, por lo que sólo aceptamos productos que cumplan con nuestros estándares de calidad. Al publicar un producto en nuestro sitio web, el vendedor garantiza que el artículo se encuentra en excelente estado y que cumple con todas las especificaciones proporcionadas.</br>
+Proceso de evaluación</br>
+Cada producto que se pretenda publicar en nuestro sitio web, será sometido a un proceso de evaluación para garantizar su estado y calidad. Nos reservamos el derecho de rechazar cualquier producto que no cumpla con nuestros criterios de calidad.</br>
+Descripciones precisas</br>
+Los vendedores son responsables de proporcionar descripciones precisas y detalladas de sus productos, incluyendo cualquier imperfección o desgaste evidente. La información proporcionada debe reflejar de manera transparente el estado real del artículo.</br>
+Imágenes representativas</br>
+Es obligatorio que los vendedores proporcionen imágenes claras y representativas de los productos que desean vender. Las imágenes deben mostrar el estado actual del artículo y cualquier característica relevante, sin fondo o con un fondo de color blanco. Nos reservamos el derecho de solicitar imágenes adicionales si es necesario.</br>
+Retiro de productos</br>
+Nos reservamos el derecho de retirar cualquier producto de nuestro sitio web si se determina que no cumple con nuestros estándares de calidad. Los vendedores serán notificados y se les proporcionará información detallada sobre la decisión.</br>
+Colaboración Transparente</br>
+Valoramos la colaboración transparente entre El Gran Bazar y los vendedores. Si hay preocupaciones sobre la calidad de un producto o si se requiere información adicional, nos comunicaremos con el vendedor para abordar la situación de manera efectiva.</br>
+Actualizaciones de políticas</br>
+Estos términos están sujetos a cambios periódicos para garantizar que reflejen las mejores prácticas y estándares de calidad. Los vendedores serán notificados de cualquier actualización y se espera que revisen y acepten los términos actualizados.</br>
+</br>
+Fecha de última actualización: 25 de noviembre de 2023.
+
+                    .</div>
+                </div>
+              </div>
+            </div>
+      </div><!--cierra los acordeones -->
+  </div><!--cierra el contenedor de todo el lado izquierdo-->
+
+    <div id="for-vendedor" class="container my-5 col">
+      <h1 class="mt-3 titulo-form">¿Qué quieres vender?</h1>
+  <div class="my-3 mr-5 ">
+      <label for="exampleFormControlInput1" class="form-label">Producto</label>
+      <input type="email" class="form-control formulario-bo" id="inputFormProducto" placeholder="Producto" required>
+    </div>
+    <div class="mb-3 mr-5">
+      <label for="inputFormCategoria" class="form-label">Categoría</label>
+      <select id="inputFormCategoria" class="form-select" required>
+        <option value="" disabled="disabled">Elige una opción</option>
+        <option value="Ropa y accesorios"selected>Ropa y accesorios</option>
+        <option value="Electrodomésticos">Electrodomésticos</option>
+        <option value="Electrónicos">Electrónicos</option>
+        <option value="Entretenimiento">Entretenimiento</option>
+      </select>
+    </div>
+    <div class="mb-3 mr-5">
+      <label for="inputFormEstado" class="form-label">Estado</label>
+      <select id="inputFormEstado" class="form-select">
+        <option value="" disabled="disabled">Elige una opción</option>
+        <option value="Nuevo-etiqueta"selected>Nuevo con etiqueta</option>
+        <option value="Nuevo-sin-etiqueta">Nuevo sin etiqueta</option>
+        <option value="Seminuevo">Seminuevo</option>
+        <option value="Segunda-mano">De segunda mano</option>
+      </select>
+    </div>
+    <div class="mb-3 mr-5">
+      <label for="exampleFormControlTextarea1" class="form-label">Descripción</label>
+      <textarea class="form-control formulario-bo" id="inputFormDescripcion" placeholder="Descripción" rows="3" required></textarea>
+    </div>
+    <div class="my-3 mr-5 ">
+      <label for="exampleFormControlInput1" class="form-label">Precio</label>
+      <input type="email" class="form-control formulario-bo" id="inputFormPrecio" placeholder="Precio" required>
+    </div>
+    <div class="my-3 mr-5 ">
+      <label for="exampleFormControlInput1" class="form-label">Teléfono</label>
+      <input type="email" class="form-control formulario-bo" id="inputFormTel" placeholder="Teléfono" required>
+    </div>
+    <div class="my-3 mr-5 ">
+      <label for="exampleFormControlInput1" class="form-label">Dirección</label>
+      <input type="email" class="form-control formulario-bo" id="inputFormDireccion" placeholder="Dirección" required>
+    </div>
+    <div class="my-3 mr-5 ">
+      <label for="exampleFormControlInput1" class="form-label">Código Postal</label>
+      <input type="email" class="form-control formulario-bo" id="inputFormCP" placeholder="Código Postal" required>
+    </div>
+    <div class="mb-3 mr-5">
+      <label for="inputFormEnvio" class="form-label">Envío</label>
+      <select id="inputFormEnvio" class="form-select" required>
+        <option value="" disabled="disabled">Elige una opción</option>
+        <option value="Fedex"selected>Fedex</option>
+        <option value="Correos-de-Mexico">Correos de México</option>
+        <option value="Express"> J&T Express</option>
+        <option value="DHL">DHL</option>
+        <option value="Estafeta">Estafeta</option>
+      </select>
+    </div>
+    <!--<button id="upload_widget" class="btn btn-secondary btn-enviar-der mr-1 col-2" class="cloudinary-button justify-content-center" required>Carga tu imagen</button>-->
+    <p class="mr-5 aviso-texto">Recuerda que los costos de envío son cubiertos por el comprador.</p>
+
+    <div id="check-form" class="mr-5">
+      <div class="row">
+     <div class="col md-8"> 
+      <div class="form-check">
+          <input id="terminos1" class="form-check-input cubito" type="checkbox" value="" id="defaultCheck1" required>
+          <label class="form-check-label cubito-text" for="terminos1">
+            Acepto los términos y condiciones.
+          </label>
+        </div>
+        <div class="form-check container">
+          <input id="terminos2" class="form-check-input cubito" type="checkbox" value="" id="defaultCheck2" required>
+          <label class="form-check-label cubito-text" for="terminos2">
+           Acepto los términos de selección de productos.
+          </label>
+        </div>       
+        </div><!--clas col para checkbox-->
+        <button type="button" class="btn btn-secondary btn-enviar-der mr-2 col-sm-2 col-md-3" id="btn-enviar-form">Enviar</button>
+        <button type="button" class="btn btn-secondary btn-enviar-der mr-2 col-sm-2 col-md-3" id="btnClear">Limpiar</button>
+        <p class="mr-5 aviso-texto">Antes de ser publicado tu producto en la página web, tu publicación será enviada a revisión, donde nuestros colaboradores se encargarán de revisarla antes de aprobarla.</p>
+      </div>
+     </div><!--cierre de contenedor checkbox-->
+
+    </div> <!-- forms para vendedor derecha-->
+</div><!--cierre de row-->
+
+
+<div id="img-fondo" class="row g-0">
+
+<div class="col-sm-12 col-md-4 col-lg-4 p-container">
+  <img src="./src/images/vendesegura.jpeg" class="img-fluid  img-fondo" alt="...">
+  <!-- <div class="centered">Vende de manera segura</div>
+  <div class="left2">Sin encuentros</div> -->
+</div>
+<div class="col-sm-12 col-md-4 col-lg-4 p-container">
+  <img src="./src/images/ganadinero.jpeg" class="img-fluid  img-fondo" alt="...">
+  <!-- <div class="centered">Gana dinero</div>
+  <div class="left2">Dándole una segunda vida a tus pertenencias</div> -->
+</div>
+<div class="col-sm-12 col-md-4 col-lg-4 p-container">
+  <img src="./src/images/ayudaambiente.jpeg" class="img-fluid  img-fondo" alt="...">
+  <!-- <div class="centered col-sm-6 col-xs-6">Ayuda al medio ambiente</div>
+  <div class="left2 col-sm-6 col-xs-6">Alargando el ciclo de vida de los productos</div> -->
+</div>
+</div><!--cierra img-fondo-->
+
+
+
+</main>
+
+<footer id="footer-bazar" class="container-flex row">
+
+</footer>
+
+
+
+       <script src="./JS/navbar3.js" defer> </script>
+       <script src="./JS/footer.js" defer> </script>
+
+        <script src="./JS/formulario-vendedores.js" defer> </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+        <!--Script de la imagen para cargar-->
+        <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>
+</body>
+
+</html>

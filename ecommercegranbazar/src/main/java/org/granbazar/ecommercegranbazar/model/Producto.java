@@ -28,16 +28,20 @@ public class Producto {
 	private String imagen;
 	@Column(nullable = false)
 	private String envio;
+	@Column(nullable = false)
+	private String categoria;
+	
 	
   
 	public Producto(String nombre, String estadoProducto, String descripcion, Double precio, String imagen,
-			String envio) {
+			String envio, String categoria) {
 		this.nombre = nombre;
 		this.estadoProducto = estadoProducto;
 		this.descripcion = descripcion;
 		this.precio = precio;
 		this.imagen = imagen;
 		this.envio = envio;
+		this.categoria = categoria;
 	}//constructor
 	
 	public Producto() {
@@ -91,7 +95,15 @@ public class Producto {
 	public void setEnvio(String envio) {
 		this.envio = envio;
 	}//setEnvio
+	
+	public String getCategoria() {
+		return categoria;
+	}//getEnvio
 
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
+	}//setEnvio
+	
 	public Long getId() {
 		return id;
 	}//getId
@@ -99,7 +111,10 @@ public class Producto {
 	@Override
 	public String toString() {
 		return "Producto [id=" + id + ", nombre=" + nombre + ", estadoProducto=" + estadoProducto + ", descripcion="
-				+ descripcion + ", precio=" + precio + ", imagen=" + imagen + ", envio=" + envio + "]";
+				+ descripcion + ", precio=" + precio + ", imagen=" + imagen + ", envio=" + envio + ", categoria="
+				+ categoria + "]";
 	}//toString
+
+
 
 }//class

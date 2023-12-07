@@ -51,7 +51,8 @@ public class ProductoController {
 			@RequestParam(required= false) String descripcion,
 			@RequestParam(required= false) Double precio,
 			@RequestParam(required= false) String imagen,
-			@RequestParam(required= false) String envio
-			){ return productoService.updateProducto(id, nombre, estadoProducto, descripcion, precio, imagen, envio); 
+			@RequestParam(required= false) String envio,
+			@RequestParam(required= false) String categoria
+			){ return productoService.updateProducto(id, nombre, estadoProducto, descripcion, precio, imagen, envio, categoria); 
 	}//updateProducto
 }//class

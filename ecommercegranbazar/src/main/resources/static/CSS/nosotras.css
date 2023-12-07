@@ -1,0 +1,74 @@
+*{
+    box-sizing: border-box;
+}
+body{
+    overflow-x: hidden;
+}
+
+/*Títulos, subtítulos y párrafos*/
+ h1, h3{
+    font-family: 'Young Serif', serif;
+    color: #5E1F28 ;
+}
+h4{
+    font-family:'Montserrat', sans-serif;
+    font-style: italic;
+}
+p{
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.25rem;
+    text-align: justify;
+}
+
+/*Misión*/
+.imgMision{
+    transition: transform 2s;
+    object-fit: cover;
+}
+/*Cards*/
+.imgNosotras{
+    width: 300px;
+    height: 400px;
+    z-index: 3;
+    position: relative;
+    transition: transform 500ms;
+    clip-path: circle(43.1% at 50% 49%);
+
+}
+#img-Em{
+    clip-path: circle(49.1% at 50% 44%);
+}
+#img-Lau{
+    clip-path: circle(46.0% at 49% 49%);
+}
+
+.text-nosotras{
+    text-align: justify;
+}
+.containerNosotras{
+    clip-path: circle(50%)
+}
+.circleNosotras{
+   background-color:  rgb(229,114,91);
+   border-radius: 50%;
+   height: 300px;
+   width: 300px;
+   object-fit: cover;
+   z-index: 1;
+   position: absolute;
+}
+/*Animación*/
+.imgNosotras:hover{
+    transform: scale(1.2);/*Podemos ponerle solo valors de X o Y, o diferentes valores de cada uno*/
+    /*scaleY o scaleX*/
+    
+    
+}
+.imgMision:hover{
+    transform: rotateY(360deg);
+}
+/*CardFooter*/
+.botonFooter{
+   color:  #5E1F28 ;
+   font-size: 30px;
+}

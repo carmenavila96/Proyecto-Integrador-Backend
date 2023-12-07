@@ -19,14 +19,10 @@ let alertValidaciones = document.getElementById("alertValidaciones");
 
 let cardsForm = document.getElementById("cardsForm");
 
-let txtImg= document.getElementById("img-product"); //esto no se está utilizando
 
 //imagen para cargar
 let imagen = document.querySelector('#img-product');
 
-
-//Arreglo que va a almacena los elementos de mi tabla
-datos = JSON.parse(localStorage.getItem("datos")) || [];
 
 function validarCategoria(){
 
@@ -117,6 +113,27 @@ function validarImagen() {
         return true;
     }
 }//ValidarImagen
+
+
+// Fetch user data from the API
+let promesa = fetch("http://localhost:8080/api/productos/", { method: 'GET' });
+
+
+
+promesa
+.then(response => {response.json()  
+.then(result => productos = result);
+})
+.catch(error =>{ console.log('error en el JSON', error)
+})
+
+ .catch(
+        (error)=> console.log(error, "Ocurrió un problema en la solicitud")
+ );
+
+
+
+
 
 btnEnviarForm.addEventListener("click", function(event){
 
@@ -227,24 +244,48 @@ btnEnviarForm.addEventListener("click", function(event){
         alertValidaciones.style.display="block";
         isValid = false;
     }//If ! validarImagen
+    
+    
 
     //JSON
     if(isValid){ //Si es valido el nombre y la cantidad los agregará a la tabla, si no, no los agregará
 
-
-            let elemento = {name : txtProducto.value,
-            img:  imagen.src,
-            categoria : txtCategoria.value,
+         
+            let nuevoProducto = {
+               
+            nombre : txtProducto.value,
+            estadoProducto: txtEstado.value,
+            descripcion: txtDescripcion.value,
             precio : txtPrecio.value,
+            imagen:  imagen.src,
+            envio: txtEnvio.value,
+            categoria : txtCategoria.value,
+           
+               
             };
 
-
-        //Ir almacenando elementos a mi array > Hace que una cadena de texto se vuelva un object
-        datos.push((elemento));
-        //Guardar mi arreglo en el local storage
-        localStorage.setItem("datos", JSON.stringify(datos)); //Convierte los alementos de mi array en string
-
-
+  
+   
+  let promesa2 =  fetch('http://localhost:8080/api/productos/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(nuevoProducto),
+            })
+            
+            
+          promesa2
+          .then(response => {response.json() 
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alertError('Error al ingresar un producto nuevo');
+                });
+        
+          
+        
+ 
         window.location.href = "recienanadidos.html";
 
     } //isValid
@@ -302,3 +343,5 @@ let myWidget = cloudinary.createUploadWidget({
 document.getElementById("upload_widget").addEventListener("click", function(){
     myWidget.open();
   }, false);
+  
+  

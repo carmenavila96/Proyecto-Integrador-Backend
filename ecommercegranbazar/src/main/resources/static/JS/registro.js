@@ -150,8 +150,7 @@ btnCrearCuenta.addEventListener("click", function(event){
             
             
           promesa2
-          .then(response => {
-                   .then(response => {response.json() 
+          .then(response => {response.json() 
                 })
                 .then(data => {
                     Swal.fire({

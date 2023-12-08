@@ -252,7 +252,7 @@ btnEnviarForm.addEventListener("click", function(event){
     if(isValid){ //Si es valido el nombre y la cantidad los agregará a la tabla, si no, no los agregará
 
          var myHeaders = new Headers();
-         myHeaders.append("Authorization", "Bearer: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJha2FyaXNpdGFAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MDIwMjI3OTEsImV4cCI6MTcwMjA1ODc5MX0.qng_epD4oJrdTVzkCBfGzwSt_ygPTqxCitkbuXLVqR4");
+         myHeaders.append("Authorization", "Bearer: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJha2FyaXNpdGFAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MDIwNjY3MTEsImV4cCI6MTcwMjEwMjcxMX0.bPGjeJ05OpVieny8IFX1O0AjuN3r66Hwe-uSnenxnxI");
          myHeaders.append("Content-Type", "application/json");
 
 
@@ -286,7 +286,8 @@ fetch("http://localhost:8080/api/productos/", requestOptions)
 
         
  
-        window.location.href = "recienanadidos.html";
+      //window.location.href = "recienanadidos.html";
+      window.location.replace("recienanadidos.html");
 
     } //isValid
 

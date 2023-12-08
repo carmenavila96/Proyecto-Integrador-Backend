@@ -17,7 +17,7 @@ let logOutorIn = false;
         
       
 var myHeaders = new Headers();
-myHeaders.append("Authorization", "Bearer: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJFbWlsdHkyNUBob3RtYWlsLmNvbSIsInJvbGUiOiJ1c2VyIiwiaWF0IjoxNzAxNzk2NTM1LCJleHAiOjE3MDE4MzI1MzV9.kCNm2tTW8hzNlMgDqfTHaCp_qgnWysLFYzYz1lOwOtg");
+myHeaders.append("Authorization", "Bearer: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJha2FyaXNpdGFAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MDIwNjM1MjIsImV4cCI6MTcwMjA5OTUyMn0.6Zl3kl18oJdZz8BR3VxUE8NRUOjxeRKVGOT2N7hHR4I");
 myHeaders.append("Content-Type", "application/json");
 
 var raw = {
@@ -52,7 +52,6 @@ fetch("http://localhost:8080/api/login/", requestOptions)
                 timer: 1500
             }); //swal
             
-            window.location.href = 'index.html';//Redirige a Home, Si comentan esta redirección pueden observar la Swwet alert, si no es imperceptibe y envía de una a Home.
             if (logOutorIn){
                 //Arreglo que va a almacenar si el usuario está logIn or logOut
                 let sesion = {status: "active"}
@@ -63,7 +62,9 @@ fetch("http://localhost:8080/api/login/", requestOptions)
                 localStorage.setItem("logArray", JSON.stringify(logArray));
                 console.log(logArray);
             }
-            
+                        
+                        window.location.href = 'index.html';//Redirige a Home, Si comentan esta redirección pueden observar la Swwet alert, si no es imperceptibe y envía de una a Home.
+
             }else{
              Swal.fire({
                     icon: "error",

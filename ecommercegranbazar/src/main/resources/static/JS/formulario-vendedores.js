@@ -251,7 +251,11 @@ btnEnviarForm.addEventListener("click", function(event){
     //JSON
     if(isValid){ //Si es valido el nombre y la cantidad los agregará a la tabla, si no, no los agregará
 
-         
+         var myHeaders = new Headers();
+         myHeaders.append("Authorization", "Bearer: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJha2FyaXNpdGFAZ21haWwuY29tIiwicm9sZSI6InVzZXIiLCJpYXQiOjE3MDIwMjI3OTEsImV4cCI6MTcwMjA1ODc5MX0.qng_epD4oJrdTVzkCBfGzwSt_ygPTqxCitkbuXLVqR4");
+         myHeaders.append("Content-Type", "application/json");
+
+
             let nuevoProducto = {
                
             nombre : txtProducto.value,
@@ -266,25 +270,20 @@ btnEnviarForm.addEventListener("click", function(event){
             };
 
   
-   
-  let promesa2 =  fetch('http://localhost:8080/api/productos/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(nuevoProducto),
-            })
-            
-            
-          promesa2
-          .then(response => {response.json() 
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alertError('Error al ingresar un producto nuevo');
-                });
-        
-          
+
+var requestOptions = {
+  method: 'POST',
+  headers: myHeaders,
+  body: JSON.stringify(nuevoProducto),
+  redirect: 'follow'
+};
+
+fetch("http://localhost:8080/api/productos/", requestOptions)
+  .then(response => response.text())
+  .then(result => console.log(result))
+  .catch(error => console.log('error', error));
+
+
         
  
         window.location.href = "recienanadidos.html";
